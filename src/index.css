@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Modern humane dark theme - $PASTA */
+    --background: 0 0% 7%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 11%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 11%;
+    --popover-foreground: 0 0% 98%;
+
+    /* Cyan primary accent */
+    --primary: 191 100% 50%;
+    --primary-foreground: 0 0% 7%;
+
+    /* Orange secondary accent */
+    --secondary: 14 100% 60%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 191 100% 50%;
+    --accent-foreground: 0 0% 7%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 191 100% 50%;
+
+    --radius: 1rem;
+
+    /* Custom design tokens for humane UI */
+    --bg-elevated: 0 0% 11%;
+    --shadow-soft: 0 0% 0% / 0.1;
+    --shadow-medium: 0 0% 0% / 0.2;
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
