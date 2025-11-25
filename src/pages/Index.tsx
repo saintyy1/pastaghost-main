@@ -13,7 +13,7 @@ const Index = () => {
       <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-slate-950/60 backdrop-blur-2xl">
         <div className="container mx-auto px-4 sm:px-6 py-4 sm:py-5">
           <nav className="flex items-center justify-between">
-            <div className="flex items-center gap-2 sm:gap-3 text-xl sm:text-2xl font-bold">
+            <a href="#" className="flex items-center gap-2 sm:gap-3 text-xl sm:text-2xl font-bold">
               <img 
                 src={pastaChefLogo} 
                 alt="PASTASOL Chef Logo" 
@@ -22,7 +22,7 @@ const Index = () => {
               <span className="bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500 bg-clip-text text-transparent">
                 $PASTA
               </span>
-            </div>
+            </a>
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-8">
