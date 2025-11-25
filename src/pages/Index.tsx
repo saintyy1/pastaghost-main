@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Menu, X, Play, TrendingUp, Users, Clock } from "lucide-react";
-import pastaChefLogo from "@/assets/pasta-chef-logo.jpeg";
+import pastaChefLogo from "../../public/pasta-chef-logo.jpeg";
 import kitchenVideo from "@/assets/kitchen-stream.mp4";
 import { useState } from "react";
 
