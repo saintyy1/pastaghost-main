@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Menu, X, Play, TrendingUp, Users, Clock } from "lucide-react";
+import { FaTelegram } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import pastaChefLogo from "../../public/pasta-chef-logo.jpeg";
 import kitchenVideo from "@/assets/kitchen-stream.mp4";
 import { useState } from "react";
@@ -7,13 +9,33 @@ import { useState } from "react";
 const Index = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // Smooth scroll handler
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+    const element = document.getElementById(targetId);
+    if (element) {
+      const headerOffset = 20; // Offset for fixed header
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+    setMobileMenuOpen(false);
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-white">
+    <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-white scroll-smooth">
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-slate-950/60 backdrop-blur-2xl">
         <div className="container mx-auto px-4 sm:px-6 py-4 sm:py-5">
           <nav className="flex items-center justify-between">
-            <a href="#" className="flex items-center gap-2 sm:gap-3 text-xl sm:text-2xl font-bold">
+            <a 
+              href="#home"
+              onClick={(e) => handleSmoothScroll(e, 'home')}
+              className="flex items-center gap-2 sm:gap-3 text-xl sm:text-2xl font-bold">
               <img 
                 src={pastaChefLogo} 
                 alt="PASTASOL Chef Logo" 
@@ -26,12 +48,40 @@ const Index = () => {
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-8">
-              <a href="#stream" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">
+              <a 
+                href="#stream" 
+                onClick={(e) => handleSmoothScroll(e, 'stream')}
+                className="text-slate-400 hover:text-white transition-colors text-sm font-medium cursor-pointer"
+              >
                 Live Stream
               </a>
-              <a href="#mechanic" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">
+              <a 
+                href="#mechanic" 
+                onClick={(e) => handleSmoothScroll(e, 'mechanic')}
+                className="text-slate-400 hover:text-white transition-colors text-sm font-medium cursor-pointer"
+              >
                 How It Works
               </a>
+              <div className="flex items-center gap-3">
+                <a 
+                  href="https://x.com/pastasol?t=vS24rX5Ycssvmi2TQ7T9xQ&s=08" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 transition-colors"
+                  aria-label="Twitter"
+                >
+                  <FaXTwitter className="h-4 w-4" />
+                </a>
+                <a 
+                  href="https://t.me/yourchannel" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 flex hidden items-center justify-center rounded-full bg-white/5 hover:bg-white/10 transition-colors"
+                  aria-label="Telegram"
+                >
+                  <FaTelegram className="h-4 w-4" />
+                </a>
+              </div>
               <Button className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-lg shadow-amber-500/25 rounded-full px-6 font-semibold">
                 Buy $PASTA
               </Button>
@@ -52,18 +102,38 @@ const Index = () => {
             <div className="md:hidden mt-4 pb-4 space-y-4 animate-in slide-in-from-top">
               <a 
                 href="#stream" 
-                className="block text-slate-400 hover:text-white transition-colors font-medium py-2"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={(e) => handleSmoothScroll(e, 'stream')}
+                className="block text-slate-400 hover:text-white transition-colors font-medium py-2 cursor-pointer"
               >
                 Live Stream
               </a>
               <a 
                 href="#mechanic" 
-                className="block text-slate-400 hover:text-white transition-colors font-medium py-2"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={(e) => handleSmoothScroll(e, 'mechanic')}
+                className="block text-slate-400 hover:text-white transition-colors font-medium py-2 cursor-pointer"
               >
                 How It Works
               </a>
+              <div className="flex items-center gap-3 py-2">
+                <a 
+                  href="https://x.com/pastasol?t=vS24rX5Ycssvmi2TQ7T9xQ&s=08" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 transition-colors"
+                  aria-label="Twitter"
+                >
+                  <FaXTwitter className="h-5 w-5" />
+                </a>
+                <a 
+                  href="https://t.me/yourchannel" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 flex hidden items-center justify-center rounded-full bg-white/5 hover:bg-white/10 transition-colors"
+                  aria-label="Telegram"
+                >
+                  <FaTelegram className="h-5 w-5" />
+                </a>
+              </div>
               <Button className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-lg shadow-amber-500/25 rounded-full font-semibold">
                 Buy $PASTA
               </Button>
@@ -74,7 +144,7 @@ const Index = () => {
 
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="relative py-20 sm:py-32 md:py-40 overflow-hidden">
+        <section id='home' className="relative py-20 sm:py-32 md:py-40 overflow-hidden">
           {/* Animated background */}
           <div className="absolute inset-0 overflow-hidden">
             <div className="absolute top-1/4 -left-48 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl animate-pulse" />
@@ -110,7 +180,15 @@ const Index = () => {
                       Buy $PASTA on Pump.fun
                       <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                     </Button>
-                    <Button size="lg" variant="outline" className="border-white/10 hover:bg-white/5 rounded-full px-8 py-6 text-base font-semibold backdrop-blur group">
+                    <Button 
+                      size="lg" 
+                      variant="outline" 
+                      className="border-white/10 hover:bg-white/5 rounded-full px-8 py-6 text-base font-semibold backdrop-blur group"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleSmoothScroll(e as any, 'stream');
+                      }}
+                    >
                       <Play className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
                       Watch Live
                     </Button>
@@ -452,8 +530,13 @@ const Index = () => {
                   Buy $PASTA Now
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
-                <Button size="lg" variant="outline" className="border-white/10 hover:bg-white/5 rounded-full px-10 py-6 text-lg font-semibold backdrop-blur">
-                  Join Telegram
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="border-white/10 hover:bg-white/5 rounded-full px-10 py-6 text-lg font-semibold backdrop-blur"
+                  onClick={() => window.open('https://x.com/pastasol?t=vS24rX5Ycssvmi2TQ7T9xQ&s=08', '_blank', 'noopener noreferrer')}
+                >
+                  Follow on X
                 </Button>
               </div>
             </div>
@@ -465,7 +548,29 @@ const Index = () => {
       <footer className="border-t border-white/5 py-16 bg-slate-950/50">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-4xl mx-auto space-y-8">
-            <div className="text-center space-y-4">
+            <div className="text-center space-y-6">
+              {/* Social Links */}
+              <div className="flex items-center justify-center gap-4">
+                <a 
+                  href="https://x.com/pastasol?t=vS24rX5Ycssvmi2TQ7T9xQ&s=08" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 transition-all duration-300 hover:scale-110 group"
+                  aria-label="Follow us on Twitter"
+                >
+                  <FaXTwitter className="h-5 w-5 text-slate-400 group-hover:text-white transition-colors" />
+                </a>
+                <a 
+                  href="https://t.me/yourchannel" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 flex hidden items-center justify-center rounded-full bg-white/5 hover:bg-white/10 transition-all duration-300 hover:scale-110 group"
+                  aria-label="Join our Telegram"
+                >
+                  <FaTelegram className="h-5 w-5 text-slate-400 group-hover:text-white transition-colors" />
+                </a>
+              </div>
+              
               <p className="text-slate-400 text-sm">
                 Contract: <code className="bg-slate-900/50 px-3 py-1.5 rounded-lg text-amber-400 font-mono text-xs border border-white/5">EPASTAxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</code>
               </p>
